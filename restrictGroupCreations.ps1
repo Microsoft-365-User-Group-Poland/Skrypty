@@ -12,7 +12,7 @@
 $GroupName = 'AllowedToCreateGroups'
 # Set owner of privileged group
 $GroupOwner = 'admin@yourTenant.onmicrosoft.com'
-# Example members of goups 
+# Set members of privileged group 
 $GroupMembers = ('user1@yourTenant.onmicrosoft.com','user2@yourTenant.onmicrosoft.com','user2@yourTenant.onmicrosoft.com')
 # New Group with permission to create Teams & Office 365 groups
 
