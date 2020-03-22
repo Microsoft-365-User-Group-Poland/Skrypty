@@ -26,7 +26,7 @@ Connect-MsolService -Credential $creds
 Connect-AzureAD -Credential $creds
 
 #Create goup to control who can create new Office 365 Groups
-New-UnifiedGroup -DisplayName $GroupName -Notes "Group with permission to create Teams & Office 365 groups" -Members $ugmembers -Owner admin@praxisedupl.onmicrosoft.com   
+New-UnifiedGroup -DisplayName $GroupName -Notes "Group with permission to create Teams & Office 365 groups" -Owner $GroupOwner -Members $GroupMembers   
 
 $settingsObjectID = (Get-AzureADDirectorySetting | Where-object -Property Displayname -Value "Group.Unified" -EQ).id
 if (!$settingsObjectID) {
