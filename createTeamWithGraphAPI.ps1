@@ -49,31 +49,13 @@ function callGraphTeamCreate {
   `"description`": `"$Notes`",
   `"owners@odata.bind`": [`"https://graph.microsoft.com/beta/users('$OwnerID')`"],
 
-  `"channels`": [
-        {
-            `"displayName`": `"Komunikaty klasowe`",
-            `"isFavoriteByDefault`": true
-        },
-        {
-            `"displayName`": `"Praca domowa`",
-            `"isFavoriteByDefault`": true
-        }
-    ],
     `"memberSettings`": {
         `"allowCreateUpdateChannels`": false,
         `"allowDeleteChannels`": false,
         `"allowAddRemoveApps`": false,
         `"allowCreateUpdateRemoveTabs`": false,
         `"allowCreateUpdateRemoveConnectors`": false
-    },
-    `"installedApps`": [
-        {
-            `"teamsApp@odata.bind`": `"https://graph.microsoft.com/v1.0/appCatalogs/teamsApps('com.microsoft.teamspace.tab.vsts')`"
-        },
-        {
-            `"teamsApp@odata.bind`": `"https://graph.microsoft.com/v1.0/appCatalogs/teamsApps('1542629c-01b3-4a6d-8f76-1938b779e48d')`"
-        }
-    ]
+    }
 }
 "@
     $body = [System.Text.Encoding]::UTF8.GetBytes($json)
