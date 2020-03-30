@@ -28,8 +28,8 @@ Connect-AzureAD -Credential $creds
 #Create security group to control who can create new Office 365 Groups, set owner and members
 if(!(Get-AzureADGroup -SearchString $GroupName)) {
 $Response = New-AzureADGroup -DisplayName $GroupName -Description "Group with permission to create Teams & Office 365 groups" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet" 
-Add-AzureADGroupOwner -ObjectId $Response.ObjectId -RefObjectId (Get-AzureADUser -SearchString $GroupOwner).ObjectId
-$GroupMembers | foreach {(Get-AzureADUser -SearchString $_).ObjectId} | foreach {Add-AzureADGroupMember -ObjectId $Response.ObjectId -RefObjectId $_}
+Add-AzureADGroupOwner -ObjectId $Response.ObjectId -RefObjectId (Get-AzureADUser -ObjectId $GroupOwner).ObjectId
+$GroupMembers | foreach {(Get-AzureADUser -ObjectId $_).ObjectId} | foreach {Add-AzureADGroupMember -ObjectId $Response.ObjectId -RefObjectId $_}
 } else {write-host "Group already exists !"}
 
 #Setting AAD groups creation
