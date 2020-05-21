@@ -1,0 +1,19 @@
+#Przed pierwszym uruchomieniem należy się zalogować do Azure AD poleceniem: Connect-AzureAD
+#Connect-AzureAD
+
+#Podaj wartość pola Dział przy użytkowniku
+$dzial = "2012_A"
+
+#Adres email wychowawcy klasy
+$wychowawca = "adres.email.nauczyciela@domenaszkoly"
+
+#Pobieranie wszystkich uczniów ze wskazanym działem
+$uczniowie = Get-AzureADUser -All $true | Where Department -eq $dzial
+#Pobieranie informacji o wychowawcy
+$IDwychowawcy = (Get-AzureADUser -ObjectId $wychowawca).ObjectID
+
+#Dla każdego ucznia w klasie ustawienie wychowawcy jako menedżera
+foreach ($uczen in $uczniowie)
+    {
+        Set-AzureADUserManager -ObjectId $uczen.ObjectId -RefObjectId $IDwychowawcy
+    }
